@@ -8,20 +8,14 @@
 <script>
 import { ref } from 'vue';
 import onePost from '../components/onePost';
-import { db } from '../firebase/config.js';
+import loadPosts from './../composable/posts/getPosts.js';
 export default {
   components: {
     onePost,
   },
   setup() {
-    const posts = ref([]);
+    const { posts, err, load } = loadPosts();
 
-    const load = async () => {
-      const res = await db.collection('posts').get();
-      posts.value = res.docs.map((doc) => {
-        return { ...doc.data(), id: doc.id };
-      });
-    };
     load();
     return { posts };
   },
