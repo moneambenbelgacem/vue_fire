@@ -1,8 +1,9 @@
 <template lang="">
   <h1>List of posts</h1>
-
-  <div v-for="post in posts" :key="post.id">
-    <onePost :post="post" />
+  <div class="row">
+    <div class="col-md-6" v-for="post in posts" :key="post.id">
+      <onePost :post="post" />
+    </div>
   </div>
 </template>
 <script>
